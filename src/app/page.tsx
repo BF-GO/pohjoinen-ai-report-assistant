@@ -2,6 +2,7 @@ import { ChannelTable } from "@/components/channel-table";
 import { MetricCard } from "@/components/metric-card";
 import { ReportGenerator } from "@/components/report-generator";
 import { monthlyMarketingData } from "@/lib/mock-data";
+import { getDefaultReportMetrics } from "@/lib/report-input";
 
 const euroFormatter = new Intl.NumberFormat("fi-FI", {
   style: "currency",
@@ -22,6 +23,7 @@ function formatMom(value: number) {
 
 export default function Home() {
   const data = monthlyMarketingData;
+  const defaultMetrics = getDefaultReportMetrics(data);
 
   return (
     <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
@@ -112,7 +114,7 @@ export default function Home() {
         </section>
 
         <div className="mt-8">
-          <ReportGenerator />
+          <ReportGenerator defaultMetrics={defaultMetrics} />
         </div>
 
         <footer className="mt-8 rounded-lg border border-slate-200 bg-white px-5 py-4 text-sm leading-6 text-slate-600 shadow-soft">

@@ -1,6 +1,6 @@
 # Pohjoinen Marketing Report Assistant
 
-A working proof-of-concept Next.js app for a hiring challenge. It shows how monthly marketing metrics can be turned into a practical first draft of management commentary for Pohjoinen Oy, a Finnish ecommerce company selling outdoor gear, sports equipment, and seasonal apparel.
+A working proof-of-concept Next.js app for a hiring challenge. It shows how monthly marketing metrics can be reviewed, lightly adjusted, and turned into a practical first draft of management commentary for Pohjoinen Oy, a Finnish ecommerce company selling outdoor gear, sports equipment, and seasonal apparel.
 
 The app uses local mock data only. It does not connect to GA4, Shopify, Klaviyo, Google Ads, Meta Ads, TikTok Ads, Semrush, Canva, WordPress, Google Sheets, or any other live platform.
 
@@ -20,11 +20,12 @@ The CMO currently spends around two days per month building a management reporti
 ## How it works
 
 1. The dashboard renders mock monthly marketing metrics from `src/lib/mock-data.ts`.
-2. The user can add an optional note or focus area.
-3. The user clicks **Generate AI report**.
-4. The frontend calls `POST /api/report`.
-5. The API route sends the structured mock data and optional note to the configured OpenAI model.
-6. The app displays the generated report draft.
+2. The user can adjust top-level monthly inputs such as revenue, ROAS, conversion rate, email revenue, and SEO sessions.
+3. The user can add an optional note or focus area.
+4. The user clicks **Generate AI report**.
+5. The frontend calls `POST /api/report` with the note and edited monthly metrics.
+6. The API route validates the inputs, falls back to defaults for missing values, and sends the structured data to the configured OpenAI model.
+7. The app displays the generated report draft.
 
 The generated report includes:
 
@@ -32,6 +33,17 @@ The generated report includes:
 - What changed this month
 - What needs attention
 - Recommended next actions
+
+## Editable mock data
+
+The editable fields simulate monthly exports from analytics, ecommerce, ads, CRM, and SEO tools. They are still mock inputs, not live integrations.
+
+The channel breakdown remains read-only in this version. The API validates the editable monthly metrics before calling the AI model:
+
+- Revenue, ad spend, email revenue, SEO sessions, ROAS, and conversion rate cannot be negative.
+- Month-over-month revenue change can be negative.
+- Missing editable values fall back to the default mock data.
+- Invalid provided values return a clear validation error.
 
 ## Run locally
 
@@ -74,6 +86,7 @@ No database or additional services are required.
 ## Limitations
 
 - Uses mock data stored in the repository.
+- Editable fields are demo inputs and are not saved.
 - Does not fetch real marketing, ecommerce, SEO, email, or creative data.
 - Does not store generated reports.
 - Does not include authentication or user roles.
