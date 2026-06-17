@@ -61,10 +61,10 @@ Create `.env.local` with:
 
 ```bash
 OPENAI_API_KEY=your_api_key_here
-OPENAI_MODEL=gpt-5.5
+OPENAI_MODEL=gpt-5.4-mini
 ```
 
-`OPENAI_MODEL` is optional. If it is not set, the API route falls back to `gpt-5.5`.
+`OPENAI_MODEL` is optional. If it is not set, the API route falls back to `gpt-5.4-mini`.
 
 ## Useful commands
 

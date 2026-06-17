@@ -10,7 +10,7 @@ const euroFormatter = new Intl.NumberFormat("fi-FI", {
   maximumFractionDigits: 0
 });
 
-const numberFormatter = new Intl.NumberFormat("en-US");
+const numberFormatter = new Intl.NumberFormat("fi-FI");
 
 function formatPercent(value: number) {
   return `${(value * 100).toFixed(1)}%`;

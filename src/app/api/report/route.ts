@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     return jsonError("OPENAI_API_KEY is not configured.", 500);
   }
 
-  const model = process.env.OPENAI_MODEL || "gpt-5.5";
+  const model = process.env.OPENAI_MODEL || "gpt-5.4-mini";
   const client = new OpenAI({ apiKey });
   const prompt = buildReportPrompt(reportData, { note, adjustedFields });
 
