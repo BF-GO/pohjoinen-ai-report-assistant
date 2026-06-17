@@ -98,7 +98,7 @@ function readOptionalNumber(value: unknown) {
     typeof value === "number"
       ? value
       : typeof value === "string"
-        ? Number(value.trim())
+        ? Number(value.trim().replace(",", "."))
         : Number.NaN;
 
   if (!Number.isFinite(parsedValue)) {

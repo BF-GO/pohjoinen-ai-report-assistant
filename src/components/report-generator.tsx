@@ -92,6 +92,10 @@ function formatDecimal(value: number, digits = 1) {
   return Number(value.toFixed(digits)).toString();
 }
 
+function parseDecimalInput(value: string) {
+  return Number(value.trim().replace(",", "."));
+}
+
 function buildInitialFormState(
   defaultMetrics: EditableReportMetrics
 ): MetricFormState {
@@ -111,7 +115,7 @@ function percentToRatio(value: string) {
     return undefined;
   }
 
-  const parsed = Number(value);
+  const parsed = parseDecimalInput(value);
   return Number.isFinite(parsed) ? parsed / 100 : value;
 }
 
